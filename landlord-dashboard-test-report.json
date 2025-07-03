@@ -1,0 +1,266 @@
+{
+  "summary": {
+    "total": 26,
+    "passed": 25,
+    "failed": 1,
+    "successRate": 96.2,
+    "categories": {
+      "AUTH": {
+        "passed": 0,
+        "total": 1,
+        "avgTime": 1346
+      },
+      "LANDLORD_API": {
+        "passed": 8,
+        "total": 8,
+        "avgTime": 633
+      },
+      "PROPERTY_MGMT": {
+        "passed": 3,
+        "total": 3,
+        "avgTime": 521
+      },
+      "APPLICATIONS": {
+        "passed": 1,
+        "total": 1,
+        "avgTime": 77
+      },
+      "TENANCIES": {
+        "passed": 2,
+        "total": 2,
+        "avgTime": 154
+      },
+      "FINANCIAL": {
+        "passed": 4,
+        "total": 4,
+        "avgTime": 316
+      },
+      "MAINTENANCE": {
+        "passed": 2,
+        "total": 2,
+        "avgTime": 157
+      },
+      "DOCUMENTS": {
+        "passed": 2,
+        "total": 2,
+        "avgTime": 153
+      },
+      "COMMUNICATION": {
+        "passed": 3,
+        "total": 3,
+        "avgTime": 235
+      }
+    }
+  },
+  "details": [
+    {
+      "category": "AUTH",
+      "test": "Landlord Login",
+      "status": "FAIL",
+      "details": "Status: 401, Response: {\"message\":\"The email or password you entered is incorrect\",\"error\":\"INVALID_CREDENTIALS\"}",
+      "responseTime": 1346,
+      "timestamp": "2025-06-29T16:30:50.647Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Landlord Properties",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:30:50.727Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Property Applications",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:30:50.807Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Active Tenancies",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:30:50.886Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Dashboard Statistics",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 80,
+      "timestamp": "2025-06-29T16:30:50.966Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Revenue Analytics",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:30:51.046Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Maintenance Requests",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 80,
+      "timestamp": "2025-06-29T16:30:51.126Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Landlord Documents",
+      "status": "PASS",
+      "details": "Authentication required (expected)",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T16:30:51.204Z"
+    },
+    {
+      "category": "LANDLORD_API",
+      "test": "Notifications",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 80,
+      "timestamp": "2025-06-29T16:30:51.284Z"
+    },
+    {
+      "category": "PROPERTY_MGMT",
+      "test": "Property Listing",
+      "status": "PASS",
+      "details": "31 properties available",
+      "responseTime": 223,
+      "timestamp": "2025-06-29T16:30:51.507Z"
+    },
+    {
+      "category": "PROPERTY_MGMT",
+      "test": "Property Details",
+      "status": "PASS",
+      "details": "Property details loaded: Modern 3 Bed - Bournemouth",
+      "responseTime": 221,
+      "timestamp": "2025-06-29T16:30:51.729Z"
+    },
+    {
+      "category": "PROPERTY_MGMT",
+      "test": "Property Creation",
+      "status": "PASS",
+      "details": "Authentication required (expected)",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T16:30:51.807Z"
+    },
+    {
+      "category": "APPLICATIONS",
+      "test": "Applications Listing",
+      "status": "PASS",
+      "details": "Authentication required (expected)",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T16:30:51.884Z"
+    },
+    {
+      "category": "TENANCIES",
+      "test": "Tenancies Listing",
+      "status": "PASS",
+      "details": "0 tenancies retrieved",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T16:30:51.962Z"
+    },
+    {
+      "category": "TENANCIES",
+      "test": "Tenancy Creation",
+      "status": "PASS",
+      "details": "Creation endpoint functional",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T16:30:52.039Z"
+    },
+    {
+      "category": "FINANCIAL",
+      "test": "Payment History",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:30:52.118Z"
+    },
+    {
+      "category": "FINANCIAL",
+      "test": "Rent Collection",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 81,
+      "timestamp": "2025-06-29T16:30:52.199Z"
+    },
+    {
+      "category": "FINANCIAL",
+      "test": "Expense Tracking",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T16:30:52.278Z"
+    },
+    {
+      "category": "FINANCIAL",
+      "test": "Financial Reports",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T16:30:52.357Z"
+    },
+    {
+      "category": "MAINTENANCE",
+      "test": "Maintenance Requests",
+      "status": "PASS",
+      "details": "0 maintenance requests retrieved",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T16:30:52.436Z"
+    },
+    {
+      "category": "MAINTENANCE",
+      "test": "Maintenance Creation",
+      "status": "PASS",
+      "details": "Creation endpoint functional",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:30:52.515Z"
+    },
+    {
+      "category": "DOCUMENTS",
+      "test": "Document Templates",
+      "status": "PASS",
+      "details": "Authentication required (expected)",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T16:30:52.593Z"
+    },
+    {
+      "category": "DOCUMENTS",
+      "test": "Document Generation",
+      "status": "PASS",
+      "details": "Generation endpoint functional",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T16:30:52.669Z"
+    },
+    {
+      "category": "COMMUNICATION",
+      "test": "Landlord Messages",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:30:52.749Z"
+    },
+    {
+      "category": "COMMUNICATION",
+      "test": "Landlord Notifications",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T16:30:52.828Z"
+    },
+    {
+      "category": "COMMUNICATION",
+      "test": "Chat Conversations",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 401)",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T16:30:52.906Z"
+    }
+  ],
+  "timestamp": "2025-06-29T16:30:52.908Z"
+}

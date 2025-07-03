@@ -1,0 +1,57 @@
+RIGHT TO RENT VERIFICATION FORM
+
+PROPERTY DETAILS:
+Property Address: [PROPERTY_ADDRESS]
+
+TENANT DETAILS:
+Full Name: [TENANT_NAME]
+Date of Birth: [DOB]
+Nationality: [NATIONALITY]
+Contact Details: [CONTACT_DETAILS]
+
+LANDLORD/AGENT DETAILS:
+Name: [LANDLORD_NAME]
+Address: [LANDLORD_ADDRESS]
+Contact Details: [LANDLORD_CONTACT]
+
+RIGHT TO RENT CHECK DETAILS:
+Check Performed By: [CHECKER_NAME]
+Date of Check: [CHECK_DATE]
+Tenancy Start Date: [START_DATE]
+
+IDENTIFICATION DOCUMENTS VERIFIED:
+Document Type: [DOCUMENT_TYPE]
+Document Number: [DOCUMENT_NUMBER]
+Document Expiry: [DOCUMENT_EXPIRY]
+Document Copy Attached: Yes / No
+
+CONFIRMATION:
+☐ I confirm that the original document(s) has been checked
+☐ I confirm that the document(s) appear to be genuine
+☐ I confirm that the document(s) belong to the tenant
+☐ I confirm the tenant's right to rent status has been verified
+☐ I confirm copies of all documents have been made and will be securely retained for the duration of the tenancy and for at least one year after the tenancy ends
+
+RIGHT TO RENT STATUS:
+☐ Unlimited Right to Rent
+☐ Time-Limited Right to Rent - Expiry date: [TIME_LIMITED_EXPIRY]
+  (Follow-up check required before this date)
+
+TENANT DECLARATION:
+I confirm that the information I have provided is accurate and complete. I understand that providing false information may lead to criminal prosecution.
+
+Tenant Signature: ____________________
+Date: ____________________
+
+LANDLORD/AGENT DECLARATION:
+I confirm that I have conducted Right to Rent checks in accordance with the Immigration Act 2014 and the Immigration (Residential Accommodation) (Prescribed Requirements and Codes of Practice) Order 2014.
+
+Landlord/Agent Signature: ____________________
+Date: ____________________
+
+IMPORTANT:
+- It is a legal requirement to check that all tenants have the right to rent in the UK
+- Original documents must be checked in the presence of the document holder
+- Follow-up checks must be conducted if the tenant has a time-limited right to rent
+- Records must be kept for the duration of the tenancy and for at least one year after it ends
+- Failure to conduct proper checks could result in a civil penalty of up to £3,000 per illegal occupier

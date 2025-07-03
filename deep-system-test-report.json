@@ -1,0 +1,253 @@
+{
+  "summary": {
+    "total": 25,
+    "passed": 17,
+    "failed": 8,
+    "successRate": 68,
+    "categories": {
+      "API": {
+        "passed": 7,
+        "total": 10,
+        "avgTime": 2003
+      },
+      "AUTH": {
+        "passed": 0,
+        "total": 1,
+        "avgTime": 552
+      },
+      "DATABASE": {
+        "passed": 3,
+        "total": 4,
+        "avgTime": 751
+      },
+      "AI": {
+        "passed": 1,
+        "total": 2,
+        "avgTime": 305
+      },
+      "SECURITY": {
+        "passed": 1,
+        "total": 1,
+        "avgTime": 76
+      },
+      "PERFORMANCE": {
+        "passed": 2,
+        "total": 3,
+        "avgTime": 527
+      },
+      "ZERO_COST_AI": {
+        "passed": 0,
+        "total": 1,
+        "avgTime": 79
+      },
+      "ADMIN": {
+        "passed": 3,
+        "total": 3,
+        "avgTime": 234
+      }
+    }
+  },
+  "details": [
+    {
+      "category": "API",
+      "test": "GET /api/health",
+      "status": "PASS",
+      "details": "Status: 200",
+      "responseTime": 100,
+      "timestamp": "2025-06-29T16:28:29.027Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/properties",
+      "status": "PASS",
+      "details": "Status: 200",
+      "responseTime": 891,
+      "timestamp": "2025-06-29T16:28:29.918Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/users",
+      "status": "PASS",
+      "details": "Status: 200",
+      "responseTime": 153,
+      "timestamp": "2025-06-29T16:28:30.071Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/auth/me",
+      "status": "PASS",
+      "details": "Status: 401",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T16:28:30.147Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/marketplace/items",
+      "status": "PASS",
+      "details": "Status: 200",
+      "responseTime": 316,
+      "timestamp": "2025-06-29T16:28:30.464Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/utilities/providers",
+      "status": "FAIL",
+      "details": "Expected: 200, Got: 401",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T16:28:30.541Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/utility/providers-public",
+      "status": "PASS",
+      "details": "Status: 200",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:28:30.620Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/documents/templates",
+      "status": "FAIL",
+      "details": "Expected: 200, Got: 401",
+      "responseTime": 80,
+      "timestamp": "2025-06-29T16:28:30.700Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/admin/config",
+      "status": "FAIL",
+      "details": "Expected: 401, Got: 200",
+      "responseTime": 156,
+      "timestamp": "2025-06-29T16:28:30.857Z"
+    },
+    {
+      "category": "API",
+      "test": "GET /api/ai/test-service",
+      "status": "PASS",
+      "details": "Status: 200",
+      "responseTime": 75,
+      "timestamp": "2025-06-29T16:28:30.932Z"
+    },
+    {
+      "category": "AUTH",
+      "test": "Admin Login",
+      "status": "FAIL",
+      "details": "Status: 200, Response: {\"id\":43,\"email\":\"admin@studentmoves.com\",\"name\":\"Admin User\",\"phone\":null,\"userType\":\"admin\",\"verified\":true,\"studentVerificationStatus\":null,\"studentVerifiedAt\":null,\"studentUniversityEmail\":null,\"studentUniversityName\":null,\"studentUniversityEmailVerified\":false,\"idVerified\":false,\"idVerificationDate\":null,\"idDocumentType\":null,\"idDocumentNumber\":null,\"idDocumentImage\":null,\"idDocumentExpiry\":null,\"faceImage\":null,\"faceToDocumentMatchScore\":null,\"faceToDocumentVerified\":false,\"addressVerified\":false,\"addressVerificationDate\":null,\"addressVerificationDocument\":null,\"bankAccountName\":null,\"bankAccountNumber\":null,\"bankSortCode\":null,\"bankVerified\":false,\"whatsappVerified\":false,\"whatsappVerificationDate\":null,\"whatsappOptIn\":false,\"rightToRentVerified\":false,\"rightToRentCheckDate\":null,\"rightToRentStatus\":null,\"rightToRentExpiryDate\":null,\"profileImage\":null,\"stripeCustomerId\":null,\"stripeSubscriptionId\":null,\"paymentMethod\":null,\"billingAddress\":null,\"billingCity\":null,\"billingPostcode\":null,\"billingCountry\":null,\"createdAt\":\"2025-06-27T22:52:13.375Z\",\"updatedAt\":\"2025-06-27T22:52:13.375Z\",\"_debug\":{\"sessionId\":\"BEfuPrNBSdMa1SeiOAJyhaB8kcIzwL77\",\"loginTime\":\"2025-06-29T16:28:31.335Z\"}}",
+      "responseTime": 552,
+      "timestamp": "2025-06-29T16:28:31.484Z"
+    },
+    {
+      "category": "DATABASE",
+      "test": "Properties Data",
+      "status": "PASS",
+      "details": "31 records retrieved",
+      "responseTime": 225,
+      "timestamp": "2025-06-29T16:28:31.709Z"
+    },
+    {
+      "category": "DATABASE",
+      "test": "Users Data",
+      "status": "PASS",
+      "details": "31 records retrieved",
+      "responseTime": 154,
+      "timestamp": "2025-06-29T16:28:31.863Z"
+    },
+    {
+      "category": "DATABASE",
+      "test": "Marketplace Items",
+      "status": "PASS",
+      "details": "5 records retrieved",
+      "responseTime": 297,
+      "timestamp": "2025-06-29T16:28:32.160Z"
+    },
+    {
+      "category": "DATABASE",
+      "test": "Utility Providers",
+      "status": "FAIL",
+      "details": "Status: 401",
+      "responseTime": 75,
+      "timestamp": "2025-06-29T16:28:32.235Z"
+    },
+    {
+      "category": "AI",
+      "test": "Service Manager",
+      "status": "FAIL",
+      "details": "Status: 200",
+      "responseTime": 74,
+      "timestamp": "2025-06-29T16:28:32.310Z"
+    },
+    {
+      "category": "AI",
+      "test": "Property Recommendations",
+      "status": "PASS",
+      "details": "4 recommendations generated",
+      "responseTime": 231,
+      "timestamp": "2025-06-29T16:28:32.541Z"
+    },
+    {
+      "category": "SECURITY",
+      "test": "Security Headers",
+      "status": "PASS",
+      "details": "4/4 security headers present",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T16:28:32.617Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Properties Load Time",
+      "status": "PASS",
+      "details": "Completed in 152ms (under 1000ms limit)",
+      "responseTime": 152,
+      "timestamp": "2025-06-29T16:28:32.770Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Marketplace Load Time",
+      "status": "PASS",
+      "details": "Completed in 300ms (under 1000ms limit)",
+      "responseTime": 300,
+      "timestamp": "2025-06-29T16:28:33.070Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Utilities Load Time",
+      "status": "FAIL",
+      "details": "Status: 401",
+      "responseTime": 75,
+      "timestamp": "2025-06-29T16:28:33.146Z"
+    },
+    {
+      "category": "ZERO_COST_AI",
+      "test": "Custom AI Provider",
+      "status": "FAIL",
+      "details": "Status: 200",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:28:33.226Z"
+    },
+    {
+      "category": "ADMIN",
+      "test": "Admin Users List",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 401)",
+      "responseTime": 75,
+      "timestamp": "2025-06-29T16:28:33.302Z"
+    },
+    {
+      "category": "ADMIN",
+      "test": "System Statistics",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T16:28:33.381Z"
+    },
+    {
+      "category": "ADMIN",
+      "test": "Fraud Alerts",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 80,
+      "timestamp": "2025-06-29T16:28:33.461Z"
+    }
+  ],
+  "timestamp": "2025-06-29T16:28:33.465Z"
+}

@@ -1,0 +1,5 @@
+{
+  "operation": "analyzeImage",
+  "base64Image": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+  "prompt": "Perform a detailed risk assessment of this property image. Identify potential hazards, compliance issues, and safety concerns. Categorize risks by severity (high/medium/low) and provide recommendations for remediation."
+}

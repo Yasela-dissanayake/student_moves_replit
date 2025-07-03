@@ -1,0 +1,734 @@
+{
+  "tabTests": [
+    {
+      "category": "tabTests",
+      "testName": "Overview Tab - API /api/properties/agent",
+      "status": "PASS",
+      "details": "31 items",
+      "responseTime": "221ms",
+      "timestamp": "2025-06-29T23:03:18.809Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Overview Tab - API /api/applications/agent",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 500: Internal Server Error",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.813Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Overview Tab - Statistics cards",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.814Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Overview Tab - Quick navigation",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.814Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Overview Tab - Task management",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.814Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Overview Tab OVERALL",
+      "status": "PASS",
+      "details": "87.5% functionality (7/8)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.815Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Properties Tab - API /api/properties/agent",
+      "status": "PASS",
+      "details": "31 items",
+      "responseTime": "223ms",
+      "timestamp": "2025-06-29T23:03:19.038Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Properties Tab - Property search",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.039Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Properties Tab - Filter options",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.039Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Properties Tab - Property details",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.040Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Properties Tab OVERALL",
+      "status": "PASS",
+      "details": "100.0% functionality (7/7)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.040Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Landlords Tab - API /api/landlords/agent",
+      "status": "PASS",
+      "details": "Data loaded",
+      "responseTime": "77ms",
+      "timestamp": "2025-06-29T23:03:19.117Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Landlords Tab - Landlord search",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.118Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Landlords Tab - Contact management",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.118Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Landlords Tab - Property associations",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.118Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Landlords Tab OVERALL",
+      "status": "PASS",
+      "details": "100.0% functionality (7/7)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.119Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Applications Tab - API /api/applications/agent",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 500: Internal Server Error",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.122Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Applications Tab - Application tracking",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.123Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Applications Tab - Status updates",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.123Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Applications Tab - Approval workflow",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.123Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Applications Tab OVERALL",
+      "status": "PASS",
+      "details": "85.7% functionality (6/7)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.124Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenants Tab - API /api/tenants/agent",
+      "status": "PASS",
+      "details": "Data loaded",
+      "responseTime": "76ms",
+      "timestamp": "2025-06-29T23:03:19.200Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenants Tab - Tenant search",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.201Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenants Tab - Communication tools",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.201Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenants Tab - History tracking",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.201Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenants Tab OVERALL",
+      "status": "PASS",
+      "details": "100.0% functionality (7/7)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.201Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenancies Tab - API /api/tenancies/agent",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 401: Unauthorized",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenancies Tab - Tenancy overview",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenancies Tab - Document access",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenancies Tab - Renewal alerts",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Tenancies Tab OVERALL",
+      "status": "PASS",
+      "details": "85.7% functionality (6/7)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Maintenance Tab - API /api/maintenance-requests/agent",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 401: Unauthorized",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.206Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Maintenance Tab - API /api/contractors/agent",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 401: Unauthorized",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.208Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Maintenance Tab - Request management",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.209Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Maintenance Tab - Contractor assignment",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.209Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Maintenance Tab - Status tracking",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.210Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Maintenance Tab OVERALL",
+      "status": "WARNING",
+      "details": "75.0% functionality (6/8)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.210Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Marketing Tab - API /api/social-targeting/campaigns",
+      "status": "PASS",
+      "details": "Data loaded",
+      "responseTime": "76ms",
+      "timestamp": "2025-06-29T23:03:19.286Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Marketing Tab - API /api/property-management/campaigns",
+      "status": "PASS",
+      "details": "Data loaded",
+      "responseTime": "74ms",
+      "timestamp": "2025-06-29T23:03:19.360Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Marketing Tab - Campaign creation",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.361Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Marketing Tab - Performance tracking",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.362Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Marketing Tab - AI targeting",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.362Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Marketing Tab OVERALL",
+      "status": "PASS",
+      "details": "100.0% functionality (8/8)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.362Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Compliance Tab - API /api/properties/agent",
+      "status": "PASS",
+      "details": "31 items",
+      "responseTime": "221ms",
+      "timestamp": "2025-06-29T23:03:19.583Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Compliance Tab - Certificate tracking",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.584Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Compliance Tab - Inspection alerts",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.585Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Compliance Tab - Compliance reports",
+      "status": "PASS",
+      "details": "Feature implementation verified",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.585Z"
+    },
+    {
+      "category": "tabTests",
+      "testName": "Compliance Tab OVERALL",
+      "status": "PASS",
+      "details": "100.0% functionality (7/7)",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.585Z"
+    }
+  ],
+  "apiEndpoints": [
+    {
+      "category": "apiEndpoints",
+      "testName": "Agent Properties",
+      "status": "PASS",
+      "details": "31 items loaded",
+      "responseTime": "281ms",
+      "timestamp": "2025-06-29T23:03:18.219Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Agent Tenancies",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 401: Unauthorized",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.229Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Agent Applications",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 500: Internal Server Error",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.257Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Agent Landlords",
+      "status": "WARNING",
+      "details": "Unexpected data type: string",
+      "responseTime": "86ms",
+      "timestamp": "2025-06-29T23:03:18.343Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Agent Contractors",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 401: Unauthorized",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.346Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Maintenance Requests",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 401: Unauthorized",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.350Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Agent Tenants",
+      "status": "WARNING",
+      "details": "Unexpected data type: string",
+      "responseTime": "79ms",
+      "timestamp": "2025-06-29T23:03:18.429Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Performance Analytics",
+      "status": "WARNING",
+      "details": "Unexpected data type: string",
+      "responseTime": "80ms",
+      "timestamp": "2025-06-29T23:03:18.509Z"
+    },
+    {
+      "category": "apiEndpoints",
+      "testName": "Commission Data",
+      "status": "WARNING",
+      "details": "Unexpected data type: string",
+      "responseTime": "79ms",
+      "timestamp": "2025-06-29T23:03:18.588Z"
+    }
+  ],
+  "componentLoading": [
+    {
+      "category": "componentLoading",
+      "testName": "Overview Tab - Property Stats",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.813Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Overview Tab - Recent Applications",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.814Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Overview Tab - Upcoming Tasks",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:18.814Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Properties Tab - Property List",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.038Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Properties Tab - Property Cards",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.039Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Properties Tab - Filter Controls",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.039Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Landlords Tab - Landlord Management",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.118Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Landlords Tab - Contact Information",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.118Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Landlords Tab - Property Relations",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.118Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Applications Tab - Application List",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.122Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Applications Tab - Status Management",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.123Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Applications Tab - Review Interface",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.123Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Tenants Tab - Tenant Directory",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.200Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Tenants Tab - Contact Details",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.200Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Tenants Tab - Tenancy History",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.200Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Tenancies Tab - Active Tenancies",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Tenancies Tab - Agreement Management",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Tenancies Tab - Renewal Tracking",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.204Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Maintenance Tab - Maintenance Requests",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.209Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Maintenance Tab - Contractor Directory",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.209Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Maintenance Tab - Work Orders",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.209Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Marketing Tab - Campaign Manager",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.361Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Marketing Tab - Social Media Tools",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.361Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Marketing Tab - Analytics Dashboard",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.361Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Compliance Tab - Compliance Tracker",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.583Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Compliance Tab - Certificate Manager",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.583Z"
+    },
+    {
+      "category": "componentLoading",
+      "testName": "Compliance Tab - Inspection Schedule",
+      "status": "PASS",
+      "details": "Component structure available",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.584Z"
+    }
+  ],
+  "dataIntegrity": [
+    {
+      "category": "dataIntegrity",
+      "testName": "Property Data Structure",
+      "status": "PASS",
+      "details": "31 properties, required fields: complete",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.810Z"
+    },
+    {
+      "category": "dataIntegrity",
+      "testName": "Data Integrity Check",
+      "status": "FAIL",
+      "details": "Request failed: HTTP 401: Unauthorized",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.813Z"
+    }
+  ],
+  "navigationFlow": [
+    {
+      "category": "navigationFlow",
+      "testName": "Tab Switching",
+      "status": "PASS",
+      "details": "Verify all 9 tabs are accessible and properly named",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.586Z"
+    },
+    {
+      "category": "navigationFlow",
+      "testName": "Tab Grid Layout",
+      "status": "PASS",
+      "details": "Verify grid accommodates all 9 tabs properly",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.586Z"
+    },
+    {
+      "category": "navigationFlow",
+      "testName": "Icon Consistency",
+      "status": "PASS",
+      "details": "Verify all tabs have unique, appropriate icons",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.586Z"
+    },
+    {
+      "category": "navigationFlow",
+      "testName": "Responsive Design",
+      "status": "PASS",
+      "details": "Verify tabs work on different screen sizes",
+      "responseTime": null,
+      "timestamp": "2025-06-29T23:03:19.587Z"
+    }
+  ],
+  "timestamp": "2025-06-29T23:03:17.912Z",
+  "overallScore": 83.33333333333334
+}

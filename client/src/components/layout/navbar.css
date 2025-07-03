@@ -1,0 +1,26 @@
+.floating-menu-button {
+  display: none; /* Hide the floating button - we'll use the hamburger menu in the navbar */
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 66, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 140, 66, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 66, 0);
+  }
+}
+
+.floating-menu-button:hover {
+  transform: scale(1.1);
+  background-color: #f37021;
+}
+
+.floating-menu-button svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none; /* Prevent SVG from capturing touches */
+}

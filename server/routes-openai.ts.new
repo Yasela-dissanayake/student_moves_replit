@@ -1,0 +1,176 @@
+/**
+ * OpenAI Routes
+ * Provides endpoints for OpenAI-powered features
+ */
+import express, { Request, Response } from 'express';
+import { storage } from './storage';
+import * as openai from './openai';
+
+export function registerOpenAIRoutes(app: express.Express) {
+  /**
+   * Generate personalized property recommendations
+   * Can be used by authenticated users or guests (limited functionality)
+   */
+  app.post("/api/recommendations/properties", async (req: Request, res: Response) => {
+    try {
+      const { userPreferences, count } = req.body;
+      let userId = req.session.userId;
+      
+      // Get all available properties
+      const allProperties = await storage.getAllProperties();
+      const availableProperties = allProperties.filter(p => p.available);
+      
+      if (!availableProperties || availableProperties.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "No properties available for recommendations"
+        });
+      }
+      
+      // If user is authenticated, we could fetch their preferences from the database
+      let storedPreferences = null;
+      if (userId) {
+        try {
+          // If getTenantPreferences doesn't exist, we can get preferences from the user's account
+          storedPreferences = await storage.getTenantPreferencesByTenantId?.(userId) || null;
+        } catch (error) {
+          console.log("No stored preferences found for user, using provided preferences");
+        }
+      }
+      
+      // Combine stored preferences with those provided in the request, with request taking precedence
+      const combinedPreferences = {
+        ...(storedPreferences || {}),
+        ...(userPreferences || {})
+      };
+      
+      // Generate recommendations
+      const recommendations = await openai.generatePropertyRecommendations({
+        userId,
+        userPreferences: Object.keys(combinedPreferences).length > 0 ? combinedPreferences : undefined,
+        allProperties: availableProperties,
+        count: count || 3
+      });
+      
+      // Return recommendations
+      res.json({
+        success: true,
+        recommendations,
+        count: recommendations.length
+      });
+      
+    } catch (error) {
+      console.error("Error generating property recommendations:", error);
+      res.status(500).json({
+        success: false, 
+        message: error instanceof Error ? error.message : "Failed to generate property recommendations",
+        provider: "openai"
+      });
+    }
+  });
+
+  /**
+   * Generate personalized property recommendations for the current user
+   * Authenticated endpoint
+   */
+  app.get("/api/recommendations/my-properties", async (req: Request, res: Response) => {
+    if (!req.session || !req.session.userId) {
+      return res.status(401).json({ 
+        success: false,
+        message: "Unauthorized. Please log in to access personalized recommendations." 
+      });
+    }
+    try {
+      const userId = req.session.userId;
+      
+      // Get all available properties
+      const allProperties = await storage.getAllProperties();
+      const availableProperties = allProperties.filter(p => p.available);
+      
+      if (!availableProperties || availableProperties.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "No properties available for recommendations"
+        });
+      }
+      
+      // Get user preferences if they exist
+      let userPreferences = null;
+      try {
+        // If getTenantPreferences doesn't exist, we can get preferences from the user's account
+        userPreferences = await storage.getTenantPreferencesByTenantId?.(userId) || null;
+      } catch (error) {
+        console.log("No preferences found for user");
+      }
+      
+      // Generate recommendations
+      const recommendations = await openai.generatePropertyRecommendations({
+        userId,
+        userPreferences: userPreferences || undefined,
+        allProperties: availableProperties,
+        count: 4 // Show slightly more for authenticated users
+      });
+      
+      // Return recommendations
+      res.json({
+        success: true,
+        recommendations,
+        count: recommendations.length
+      });
+      
+    } catch (error) {
+      console.error("Error generating personalized property recommendations:", error);
+      res.status(500).json({
+        success: false, 
+        message: error instanceof Error ? error.message : "Failed to generate personalized property recommendations",
+        provider: "openai"
+      });
+    }
+  });
+  
+  /**
+   * Check if OpenAI API is working properly
+   * Admin-only endpoint
+   */
+  app.get("/api/openai/status", async (req: Request, res: Response) => {
+    // Check if user is authenticated and is an admin
+    if (!req.session || !req.session.userId) {
+      return res.status(401).json({ 
+        success: false,
+        message: "Unauthorized. Please log in to access this endpoint." 
+      });
+    }
+    
+    // Check if user is admin
+    try {
+      const user = await storage.getUser(req.session.userId);
+      if (!user || user.userType !== 'admin') {
+        return res.status(403).json({
+          success: false,
+          message: "Forbidden. Admin access required."
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to verify user permissions."
+      });
+    }
+    try {
+      const isValid = await openai.checkApiKey();
+      
+      res.json({
+        success: true,
+        isValid,
+        provider: "openai"
+      });
+    } catch (error) {
+      console.error("Error checking OpenAI API status:", error);
+      res.status(500).json({
+        success: false,
+        message: error instanceof Error ? error.message : "Failed to check OpenAI API status",
+        provider: "openai"
+      });
+    }
+  });
+}

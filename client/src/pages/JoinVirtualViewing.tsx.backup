@@ -1,0 +1,965 @@
+import '@/lib/global-polyfill'; // Import global polyfill first to ensure it's available
+import React, { useState, useEffect, useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams, useLocation } from 'wouter';
+import SimplePeer from 'simple-peer';
+import { io, Socket } from 'socket.io-client';
+
+// Define SimplePeer types if needed (if the d.ts file isn't being properly recognized)
+interface SimplePeerInstance {
+  signal(data: unknown): void;
+  on(event: string, callback: (...args: any[]) => void): void;
+  destroy(err?: Error): void;
+  send(data: unknown): void;
+}
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { toast } from '@/hooks/use-toast';
+import { Loader2, Video, Mic, MicOff, VideoOff, MessageSquare, Info as InfoIcon } from 'lucide-react';
+import { formatDistanceToNow } from 'date-fns';
+
+interface Participant {
+  socketId: string;
+  userId: number | null;
+  name: string;
+  joined: Date;
+}
+
+interface ChatMessage {
+  message: string;
+  sender: {
+    id: number | null;
+    name: string;
+    isHost: boolean;
+  };
+  timestamp: Date;
+}
+
+const JoinVirtualViewing = () => {
+  const params = useParams<{ sessionId: string }>();
+  const sessionId = params?.sessionId;
+  const [, setLocation] = useLocation();
+  
+  // State for WebRTC and socket
+  const [socket, setSocket] = useState<Socket | null>(null);
+  const [hostSocketId, setHostSocketId] = useState<string | null>(null);
+  const [participants, setParticipants] = useState<Participant[]>([]);
+  const [peer, setPeer] = useState<SimplePeerInstance | null>(null);
+  const [localStream, setLocalStream] = useState<MediaStream | null>(null);
+  const [remoteStream, setRemoteStream] = useState<MediaStream | null>(null);
+  const [isAudioEnabled, setIsAudioEnabled] = useState(true);
+  const [isVideoEnabled, setIsVideoEnabled] = useState(true);
+  const [isJoining, setIsJoining] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [isAnonymous, setIsAnonymous] = useState(false);
+  const [showJoinDialog, setShowJoinDialog] = useState(true);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatInput, setChatInput] = useState('');
+  const [isRecording, setIsRecording] = useState(false);
+  const [sessionEnded, setSessionEnded] = useState(false);
+  const [sessionEndReason, setSessionEndReason] = useState('');
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [activeTab, setActiveTab] = useState('video');
+  
+  // Refs
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const socketRef = useRef<Socket | null>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Define property type interfaces
+  interface User {
+    id: number;
+    name: string;
+    email?: string;
+    [key: string]: any;
+  }
+  
+  interface Session {
+    id: number;
+    propertyId: number;
+    hostId: number;
+    scheduledTime: string;
+    status: string;
+    [key: string]: any;
+  }
+  
+  interface Property {
+    id: number;
+    title: string;
+    address: string;
+    city: string;
+    price: number;
+    pricePerPerson?: number;
+    bedrooms: number;
+    bathrooms: number;
+    propertyType: string;
+    images?: string[];
+    [key: string]: any;
+  }
+  
+  // Get user profile (if authenticated)
+  const { data: userProfile, isLoading: isLoadingProfile } = useQuery<User>({
+    queryKey: ['/api/users/me'],
+    retry: false
+  });
+  
+  // Handle authentication status changes
+  useEffect(() => {
+    if (userProfile) {
+      setIsAnonymous(false);
+    } else if (!isLoadingProfile) {
+      setIsAnonymous(true);
+    }
+  }, [userProfile, isLoadingProfile]);
+  
+  // Get session info to display property details
+  const { data: sessionData, isLoading: isLoadingSession } = useQuery<Session>({
+    queryKey: ['/api/virtual-viewings', sessionId],
+    enabled: !!sessionId && !isAnonymous,
+    retry: false
+  });
+  
+  // Get property details
+  const { data: propertyData, isLoading: isLoadingProperty } = useQuery<Property>({
+    queryKey: ['/api/properties', sessionData?.propertyId],
+    enabled: !!sessionData?.propertyId
+  });
+  
+  // Check window size for responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  // Initialize socket connection
+  useEffect(() => {
+    const newSocket = io();
+    setSocket(newSocket);
+    socketRef.current = newSocket;
+    
+    return () => {
+      if (newSocket) {
+        newSocket.disconnect();
+      }
+    };
+  }, []);
+  
+  // Start local media stream
+  useEffect(() => {
+    const startMedia = async () => {
+      try {
+        // Check if browser supports getUserMedia
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          throw new Error('Your browser does not support media devices access. Please try a different browser.');
+        }
+        
+        // Display loading state for media access
+        toast({
+          title: 'Camera & Microphone',
+          description: 'Please allow access when prompted by your browser...',
+        });
+        
+        // First try with both video and audio
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+          });
+          
+          setLocalStream(stream);
+          
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = stream;
+          }
+          
+          toast({
+            title: 'Ready for Viewing',
+            description: 'Your camera and microphone are working properly. You can now join the viewing session.',
+          });
+          return; // Success - exit the function
+        } catch (initialError: any) {
+          console.warn('Initial media access failed, trying fallback options:', initialError);
+          
+          // Look at the specific error name to give more helpful messages
+          if (initialError.name === 'NotAllowedError' || initialError.name === 'PermissionDeniedError') {
+            toast({
+              title: 'Camera/Mic Access Needed',
+              description: 'Please check your browser settings and enable camera/microphone permissions to fully participate in the viewing.',
+              variant: 'destructive',
+            });
+          }
+        }
+
+        // Try video only as fallback
+        try {
+          const videoOnlyStream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false
+          });
+          
+          setLocalStream(videoOnlyStream);
+          setIsAudioEnabled(false);
+          
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = videoOnlyStream;
+          }
+          
+          toast({
+            title: 'Video-Only Mode',
+            description: 'Your microphone is not available. You can see and be seen, but not speak or hear others.',
+          });
+          return; // Success with video only - exit the function
+        } catch (videoError: any) {
+          console.warn('Video-only access failed:', videoError);
+          
+          if (videoError.name === 'NotAllowedError' || videoError.name === 'PermissionDeniedError') {
+            toast({
+              title: 'Camera Access Needed',
+              description: 'Camera access was not granted. We\'ll try audio-only mode instead.',
+              variant: 'destructive',
+            });
+          }
+        }
+
+        // Last resort - try audio only
+        try {
+          const audioOnlyStream = await navigator.mediaDevices.getUserMedia({
+            video: false,
+            audio: true
+          });
+          
+          setLocalStream(audioOnlyStream);
+          setIsVideoEnabled(false);
+          
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = audioOnlyStream;
+          }
+          
+          toast({
+            title: 'Audio-Only Mode',
+            description: 'Your camera is unavailable. You can speak and hear others, but not see or be seen.',
+          });
+          return; // Success with audio only - exit the function
+        } catch (audioError: any) {
+          console.warn('Audio-only access failed:', audioError);
+          
+          if (audioError.name === 'NotAllowedError' || audioError.name === 'PermissionDeniedError') {
+            toast({
+              title: 'Media Access Required',
+              description: 'Please allow either camera or microphone access to join the viewing session. Check your device settings to enable permissions.',
+              variant: 'destructive',
+            });
+          }
+          
+          throw new Error('All media access attempts failed');
+        }
+      } catch (error: any) {
+        console.error('Error accessing media devices:', error);
+        
+        // Provide specific error messages based on the error type
+        let errorDescription = 'Unable to access your camera or microphone. Please check browser permissions and try again.';
+        
+        if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+          errorDescription = 'Unable to access your camera or microphone. Your device might be in use by another application.';
+        } else if (error.name === 'NotFoundError') {
+          errorDescription = 'No camera or microphone found. Please connect a device and try again.';
+        } else if (error.name === 'SecurityError') {
+          errorDescription = 'Media access blocked due to security restrictions in your browser.';
+        } else if (error.message) {
+          errorDescription = error.message;
+        }
+        
+        toast({
+          title: 'Media Access Error',
+          description: errorDescription,
+          variant: 'destructive',
+        });
+      }
+    };
+    
+    startMedia();
+    
+    return () => {
+      if (localStream) {
+        localStream.getTracks().forEach(track => {
+          track.stop();
+        });
+      }
+    };
+  }, []);
+  
+  // Setup socket event listeners
+  useEffect(() => {
+    if (!socket) return;
+    
+    // Handle viewing session joined event
+    socket.on('viewing-session-joined', (data: {
+      sessionId: string;
+      hostSocketId: string;
+      participants: Participant[];
+    }) => {
+      setHostSocketId(data.hostSocketId);
+      setParticipants(data.participants);
+      setIsJoining(false);
+      setShowJoinDialog(false);
+      
+      toast({
+        title: 'Joined Virtual Viewing',
+        description: 'You have successfully joined the viewing session.',
+      });
+    });
+    
+    // Handle errors when joining
+    socket.on('join-error', (data: { message: string }) => {
+      setIsJoining(false);
+      
+      toast({
+        title: 'Error Joining',
+        description: data.message,
+        variant: 'destructive',
+      });
+    });
+    
+    // Handle signals from the host
+    socket.on('signal', (data: { from: string, signal: unknown }) => {
+      if (data.from === hostSocketId && peer) {
+        peer.signal(data.signal);
+      }
+    });
+    
+    // Handle participant joined event
+    socket.on('participant-joined', (participant: Participant) => {
+      setParticipants(prev => [...prev, participant]);
+      
+      toast({
+        title: 'New Participant',
+        description: `${participant.name} has joined the viewing`,
+      });
+    });
+    
+    // Handle participant left event
+    socket.on('participant-left', (data: { socketId: string, name: string }) => {
+      setParticipants(prev => prev.filter(p => p.socketId !== data.socketId));
+      
+      toast({
+        title: 'Participant Left',
+        description: `${data.name} has left the viewing`,
+      });
+    });
+    
+    // Handle chat messages
+    socket.on('viewing-chat-message', (data: ChatMessage) => {
+      setChatMessages(prev => [...prev, data]);
+      
+      // Scroll to bottom of chat
+      if (chatContainerRef.current) {
+        setTimeout(() => {
+          if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+          }
+        }, 100);
+      }
+    });
+    
+    // Handle recording status changes
+    socket.on('recording-status-changed', (data: { isRecording: boolean }) => {
+      setIsRecording(data.isRecording);
+      
+      toast({
+        title: data.isRecording ? 'Recording Started' : 'Recording Stopped',
+        description: data.isRecording 
+          ? 'The host has started recording this viewing' 
+          : 'The host has stopped recording',
+      });
+    });
+    
+    // Handle session ended event
+    socket.on('viewing-session-ended', (data: { sessionId: string, message: string }) => {
+      setSessionEnded(true);
+      setSessionEndReason(data.message);
+      
+      // Clean up resources
+      if (peer) {
+        peer.destroy();
+        setPeer(null);
+      }
+      
+      if (localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+        setLocalStream(null);
+      }
+      
+      setRemoteStream(null);
+      
+      toast({
+        title: 'Viewing Session Ended',
+        description: data.message,
+      });
+    });
+    
+    return () => {
+      socket.off('viewing-session-joined');
+      socket.off('join-error');
+      socket.off('signal');
+      socket.off('participant-joined');
+      socket.off('participant-left');
+      socket.off('viewing-chat-message');
+      socket.off('recording-status-changed');
+      socket.off('viewing-session-ended');
+    };
+  }, [socket, peer, hostSocketId]);
+  
+  // Join the session
+  const joinSession = () => {
+    if (!socket || !sessionId || !localStream) return;
+    
+    setIsJoining(true);
+    
+    // Create peer connection
+    const newPeer = new SimplePeer({
+      initiator: false,
+      trickle: false,
+      stream: localStream
+    }) as unknown as SimplePeerInstance;
+    
+    // Handle signals from the peer
+    newPeer.on('signal', signal => {
+      if (socket && hostSocketId) {
+        socket.emit('signal', {
+          to: hostSocketId,
+          from: socket.id,
+          signal
+        });
+      }
+    });
+    
+    // Handle stream from the peer
+    newPeer.on('stream', stream => {
+      setRemoteStream(stream);
+      
+      if (remoteVideoRef.current) {
+        remoteVideoRef.current.srcObject = stream;
+      }
+    });
+    
+    // Set up the peer
+    setPeer(newPeer);
+    
+    // Join the session
+    const name = userProfile?.name || userName;
+    socket.emit('join-viewing-session', {
+      sessionId,
+      userId: userProfile?.id || null,
+      name
+    });
+  };
+  
+  // Leave viewing session
+  const leaveSession = () => {
+    if (!socket || !sessionId) return;
+    
+    socket.emit('leave-viewing-session', { sessionId });
+    
+    // Clean up resources
+    if (peer) {
+      peer.destroy();
+      setPeer(null);
+    }
+    
+    if (localStream) {
+      localStream.getTracks().forEach(track => track.stop());
+      setLocalStream(null);
+    }
+    
+    setRemoteStream(null);
+    
+    // Redirect to home page
+    setLocation('/');
+  };
+  
+  // Toggle microphone
+  const toggleAudio = () => {
+    if (localStream) {
+      localStream.getAudioTracks().forEach(track => {
+        track.enabled = !isAudioEnabled;
+      });
+      setIsAudioEnabled(!isAudioEnabled);
+    }
+  };
+  
+  // Toggle camera
+  const toggleVideo = () => {
+    if (localStream) {
+      localStream.getVideoTracks().forEach(track => {
+        track.enabled = !isVideoEnabled;
+      });
+      setIsVideoEnabled(!isVideoEnabled);
+    }
+  };
+  
+  // Send chat message
+  const sendChatMessage = () => {
+    if (!socket || !sessionId || !chatInput.trim()) return;
+    
+    const name = userProfile?.name || userName;
+    socket.emit('viewing-chat-message', {
+      sessionId,
+      message: chatInput,
+      sender: {
+        id: userProfile?.id || null,
+        name,
+        isHost: false
+      }
+    });
+    
+    setChatInput('');
+  };
+  
+  // Return to home when session is ended
+  const returnToHome = () => {
+    setLocation('/');
+  };
+  
+  // Loading state
+  if (isLoadingSession || isLoadingProperty) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="w-8 h-8 animate-spin" />
+        <span className="ml-2">Loading viewing session...</span>
+      </div>
+    );
+  }
+  
+  // Session ended screen
+  if (sessionEnded) {
+    return (
+      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen">
+        <div className="max-w-md w-full p-6 bg-card rounded-lg shadow-lg">
+          <h1 className="text-2xl font-bold text-center mb-4">Viewing Session Ended</h1>
+          <p className="text-center mb-6">{sessionEndReason}</p>
+          <div className="flex justify-center">
+            <Button onClick={returnToHome}>Return to Home</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  return (
+    <div className="container mx-auto px-4 py-6">
+      <div className="flex flex-col gap-4">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">
+            Virtual Property Viewing
+            {propertyData && `: ${propertyData.title}`}
+          </h1>
+          <Button 
+            variant="destructive" 
+            onClick={leaveSession}
+            disabled={isJoining || showJoinDialog}
+          >
+            Leave Viewing
+          </Button>
+        </div>
+        
+        {isRecording && (
+          <div className="bg-red-500 text-white px-4 py-2 rounded-md flex items-center justify-center">
+            <span className="animate-pulse mr-2">●</span>
+            <span>This session is being recorded by the host</span>
+          </div>
+        )}
+        
+        {/* Mobile View with Tabs */}
+        {isMobileView && !showJoinDialog && (
+          <>
+            {/* Mobile instructions - only show initially */}
+            {!sessionEnded && remoteStream && (
+              <div className="bg-muted p-3 rounded-md mb-3 flex items-start">
+                <InfoIcon className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5" />
+                <div>
+                  <p className="text-sm">
+                    Use the <span className="font-medium">Video</span> and <span className="font-medium">Chat</span> tabs below to switch between viewing and messaging.
+                  </p>
+                </div>
+              </div>
+            )}
+          
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="grid grid-cols-2 mb-4">
+                <TabsTrigger value="video">Video</TabsTrigger>
+                <TabsTrigger value="chat">Chat</TabsTrigger>
+              </TabsList>
+            
+            <TabsContent value="video" className="space-y-4">
+              {/* Host's video (remote stream) */}
+              <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
+                {!remoteStream ? (
+                  <div className="flex flex-col items-center justify-center h-full p-4 text-white">
+                    <Video className="w-12 h-12 mb-4 opacity-50" />
+                    <p className="text-center text-sm opacity-80">
+                      Waiting for host's video...
+                    </p>
+                    <p className="text-center text-xs mt-2 opacity-60">
+                      The host will appear here once connected
+                    </p>
+                  </div>
+                ) : (
+                  <video
+                    ref={remoteVideoRef}
+                    autoPlay
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                <div className="absolute bottom-2 left-2 bg-black bg-opacity-50 px-2 py-1 rounded text-white text-sm">
+                  {participants.find(p => p.socketId === hostSocketId)?.name || 'Host'}
+                </div>
+              </div>
+              
+              {/* Your video (local stream) */}
+              <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
+                {!isVideoEnabled ? (
+                  <div className="flex flex-col items-center justify-center h-full p-4 text-white">
+                    <VideoOff className="w-12 h-12 mb-4 opacity-50" />
+                    <p className="text-center text-sm opacity-80">
+                      Camera is disabled or unavailable
+                    </p>
+                    <p className="text-center text-xs mt-2 opacity-60">
+                      If this is unintended, try camera permissions in your device settings
+                    </p>
+                  </div>
+                ) : (
+                  <video
+                    ref={localVideoRef}
+                    autoPlay
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                <div className="absolute bottom-2 left-2 bg-black bg-opacity-50 px-2 py-1 rounded text-white text-sm">
+                  You
+                </div>
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                  <Button 
+                    size="sm" 
+                    variant={isAudioEnabled ? "default" : "destructive"} 
+                    onClick={toggleAudio}
+                    title={isAudioEnabled ? "Mute Microphone" : "Unmute Microphone"}
+                  >
+                    {isAudioEnabled ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant={isVideoEnabled ? "default" : "destructive"} 
+                    onClick={toggleVideo}
+                    title={isVideoEnabled ? "Turn Off Camera" : "Turn On Camera"}
+                    disabled={!localStream?.getVideoTracks().length}
+                  >
+                    {isVideoEnabled ? <Video className="w-4 h-4" /> : <VideoOff className="w-4 h-4" />}
+                  </Button>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="chat">
+              <Card className="p-4 h-[60vh] flex flex-col">
+                <div 
+                  ref={chatContainerRef}
+                  className="flex-1 overflow-y-auto mb-4 space-y-2"
+                >
+                  {chatMessages.map((msg, index) => (
+                    <div 
+                      key={index}
+                      className={`p-2 rounded-lg max-w-[80%] ${
+                        msg.sender.id === userProfile?.id 
+                          ? 'ml-auto bg-primary text-primary-foreground'
+                          : 'mr-auto bg-muted'
+                      }`}
+                    >
+                      <div className="text-xs font-semibold">
+                        {msg.sender.name} {msg.sender.isHost ? '(Host)' : ''}
+                      </div>
+                      <div>{msg.message}</div>
+                      <div className="text-xs opacity-70">
+                        {new Date(msg.timestamp).toLocaleTimeString()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="Type a message..."
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && sendChatMessage()}
+                  />
+                  <Button onClick={sendChatMessage}>Send</Button>
+                </div>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        )}
+        
+        {/* Desktop View with Grid Layout */}
+        {!isMobileView && !showJoinDialog && (
+          <div className="grid grid-cols-3 gap-4">
+            <div className="col-span-2 space-y-4">
+              {/* Host's video (remote stream) */}
+              <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
+                {!remoteStream ? (
+                  <div className="flex flex-col items-center justify-center h-full p-4 text-white">
+                    <Video className="w-12 h-12 mb-4 opacity-50" />
+                    <p className="text-center text-sm opacity-80">
+                      Waiting for host's video...
+                    </p>
+                    <p className="text-center text-xs mt-2 opacity-60">
+                      The host will appear here once connected
+                    </p>
+                  </div>
+                ) : (
+                  <video
+                    ref={remoteVideoRef}
+                    autoPlay
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                <div className="absolute bottom-2 left-2 bg-black bg-opacity-50 px-2 py-1 rounded text-white text-sm">
+                  {participants.find(p => p.socketId === hostSocketId)?.name || 'Host'}
+                </div>
+              </div>
+              
+              {/* Your video (local stream) */}
+              <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
+                {!isVideoEnabled ? (
+                  <div className="flex flex-col items-center justify-center h-full p-4 text-white">
+                    <VideoOff className="w-12 h-12 mb-4 opacity-50" />
+                    <p className="text-center text-sm opacity-80">
+                      Camera is disabled or unavailable
+                    </p>
+                    <p className="text-center text-xs mt-2 opacity-60">
+                      If this is unintended, try camera permissions in your device settings
+                    </p>
+                  </div>
+                ) : (
+                  <video
+                    ref={localVideoRef}
+                    autoPlay
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                <div className="absolute bottom-2 left-2 bg-black bg-opacity-50 px-2 py-1 rounded text-white text-sm">
+                  You
+                </div>
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                  <Button 
+                    size="sm" 
+                    variant={isAudioEnabled ? "default" : "destructive"} 
+                    onClick={toggleAudio}
+                    title={isAudioEnabled ? "Mute Microphone" : "Unmute Microphone"}
+                  >
+                    {isAudioEnabled ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant={isVideoEnabled ? "default" : "destructive"} 
+                    onClick={toggleVideo}
+                    title={isVideoEnabled ? "Turn Off Camera" : "Turn On Camera"}
+                    disabled={!localStream?.getVideoTracks().length}
+                  >
+                    {isVideoEnabled ? <Video className="w-4 h-4" /> : <VideoOff className="w-4 h-4" />}
+                  </Button>
+                </div>
+              </div>
+            </div>
+            
+            <div className="col-span-1">
+              <Tabs defaultValue="chat" className="w-full">
+                <TabsList className="grid grid-cols-1 w-full">
+                  <TabsTrigger value="chat">
+                    <MessageSquare className="w-4 h-4 mr-2" />
+                    Chat
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="chat" className="mt-4">
+                  <Card className="p-4 h-[60vh] flex flex-col">
+                    <div 
+                      ref={chatContainerRef}
+                      className="flex-1 overflow-y-auto mb-4 space-y-2"
+                    >
+                      {chatMessages.map((msg, index) => (
+                        <div 
+                          key={index}
+                          className={`p-2 rounded-lg max-w-[80%] ${
+                            msg.sender.id === userProfile?.id 
+                              ? 'ml-auto bg-primary text-primary-foreground'
+                              : 'mr-auto bg-muted'
+                          }`}
+                        >
+                          <div className="text-xs font-semibold">
+                            {msg.sender.name} {msg.sender.isHost ? '(Host)' : ''}
+                          </div>
+                          <div>{msg.message}</div>
+                          <div className="text-xs opacity-70">
+                            {new Date(msg.timestamp).toLocaleTimeString()}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex gap-2">
+                      <Input
+                        placeholder="Type a message..."
+                        value={chatInput}
+                        onChange={(e) => setChatInput(e.target.value)}
+                        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && sendChatMessage()}
+                      />
+                      <Button onClick={sendChatMessage}>Send</Button>
+                    </div>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+              
+              {propertyData && (
+                <Card className="p-4 mt-4">
+                  <h3 className="text-lg font-semibold mb-2">Property Information</h3>
+                  <div className="space-y-2">
+                    <div>
+                      <Label>Title</Label>
+                      <p className="text-sm">{propertyData.title}</p>
+                    </div>
+                    <div>
+                      <Label>Address</Label>
+                      <p className="text-sm">{propertyData.address}, {propertyData.city}</p>
+                    </div>
+                    <div>
+                      <Label>Price</Label>
+                      <p className="text-sm">£{propertyData.price} {propertyData.pricePerPerson && `(£${propertyData.pricePerPerson} per person)`}</p>
+                    </div>
+                    <div>
+                      <Label>Details</Label>
+                      <p className="text-sm">{propertyData.bedrooms} bed, {propertyData.bathrooms} bath, {propertyData.propertyType}</p>
+                    </div>
+                  </div>
+                </Card>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+      
+      {/* Join Dialog */}
+      <Dialog open={showJoinDialog} onOpenChange={(open) => {
+        // Only allow closing if not joining
+        if (!isJoining) {
+          setShowJoinDialog(open);
+        }
+      }}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Join Virtual Property Viewing</DialogTitle>
+            <DialogDescription>
+              Enter your name to join the virtual property viewing
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 my-4">
+            {isAnonymous ? (
+              <div>
+                <Label htmlFor="user-name">Your Name</Label>
+                <Input 
+                  id="user-name" 
+                  value={userName} 
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="Enter your name"
+                  disabled={isJoining}
+                />
+              </div>
+            ) : (
+              <div>
+                <Label>Joining as</Label>
+                <p>{isLoadingProfile ? 'Loading profile...' : userProfile?.name}</p>
+              </div>
+            )}
+            
+            <div className="space-y-3">
+              <div className="bg-muted p-4 rounded-md">
+                <h4 className="font-medium mb-2">About This Viewing</h4>
+                <p className="text-sm mb-2">
+                  You are about to join a live virtual property viewing. Your camera and microphone will be enabled.
+                </p>
+                <p className="text-sm">
+                  The host may record this session. By joining, you consent to being recorded during the viewing.
+                </p>
+              </div>
+              
+              <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-md border border-blue-200 dark:border-blue-800">
+                <div className="flex items-start">
+                  <InfoIcon className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5" />
+                  <div>
+                    <h4 className="font-medium text-blue-700 dark:text-blue-300 mb-1">Permission Notice</h4>
+                    <p className="text-sm text-blue-700 dark:text-blue-300">
+                      Your browser will ask for camera and microphone permissions. Please allow access when prompted to fully participate in the viewing.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setLocation('/')}
+              disabled={isJoining}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={joinSession}
+              disabled={isJoining || (isAnonymous && !userName.trim())}
+              className="gap-2"
+            >
+              {isJoining ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Connecting...
+                </>
+              ) : (
+                <>
+                  <Video className="h-4 w-4" />
+                  Start Virtual Viewing
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+};
+
+export default JoinVirtualViewing;

@@ -1,0 +1,129 @@
+JOINT TENANCY AGREEMENT
+
+THIS AGREEMENT is made on [DATE]
+
+BETWEEN:
+
+[LANDLORD_NAME] of [LANDLORD_ADDRESS]
+(hereinafter called "the Landlord")
+
+AND
+
+[TENANT_1_NAME], [TENANT_2_NAME], [TENANT_3_NAME], [TENANT_4_NAME]
+(hereinafter collectively called "the Tenants" and individually "the Tenant")
+
+IT IS AGREED AS FOLLOWS:
+
+1. PROPERTY
+The Landlord lets and the Tenants take the residential property at:
+[PROPERTY_ADDRESS]
+(hereinafter called "the Property")
+
+2. JOINT AND SEVERAL LIABILITY
+The Tenants agree that they shall be jointly and severally liable for all obligations contained within this agreement, including payment of rent and any damages. This means that each Tenant is liable for the full obligations under this agreement if the other Tenants fail to pay or comply.
+
+3. TERM
+The tenancy shall be for a fixed term of [TERM_MONTHS] months,
+commencing on [START_DATE] and ending on [END_DATE].
+
+4. RENT
+The Tenants shall pay a total rent of £[RENT_AMOUNT] per [RENT_FREQUENCY],
+payable in advance on the [PAYMENT_DAY] of each [PAYMENT_PERIOD].
+
+5. DEPOSIT
+The Tenants shall pay a deposit of £[DEPOSIT_AMOUNT] to be protected in the [DEPOSIT_SCHEME]
+within 30 days of receipt.
+
+6. USE OF PROPERTY
+The Property shall be used solely as a private residence for the occupation of the Tenants.
+
+7. FURNITURE
+[FURNITURE_CLAUSE]
+
+8. TENANT OBLIGATIONS
+The Tenants agree:
+a) To pay the rent on the due date.
+b) To use the Property as a private residence.
+c) To keep the Property in a clean and tidy condition.
+d) To allow the Landlord or their agent access to the Property for inspections with 24 hours' notice.
+e) Not to cause a nuisance to neighbors.
+f) Not to make alterations to the Property without written consent.
+g) To report any damages or necessary repairs promptly.
+h) To settle any disputes between themselves regarding division of rent or rooms.
+
+9. LANDLORD OBLIGATIONS
+The Landlord agrees:
+a) To maintain the structure and exterior of the Property.
+b) To ensure all gas and electrical appliances provided are safe.
+c) To provide a valid Energy Performance Certificate.
+d) To provide a valid Gas Safety Certificate (where applicable).
+e) To ensure smoke and carbon monoxide alarms are in working order.
+f) To ensure the Property is fit for human habitation.
+
+10. TERMINATION
+This tenancy cannot be terminated before the end of the fixed term except by:
+a) Mutual agreement between the Landlord and all Tenants.
+b) Serious breach of the tenancy agreement.
+c) The provisions of the Housing Act 1988.
+
+11. INDIVIDUAL TENANTS VACATING
+If one Tenant wishes to vacate the Property during the fixed term:
+a) They must obtain the Landlord's written consent.
+b) The remaining Tenants will remain liable for the full rent unless otherwise agreed.
+c) A replacement tenant may be allowed, subject to the Landlord's approval and Right to Rent checks.
+d) A new tenancy agreement may be required at the Landlord's discretion.
+
+12. NOTICE
+At the end of the fixed term, to end the tenancy:
+a) The Landlord must give at least two months' notice in writing.
+b) The Tenants must collectively give at least one month's notice in writing.
+
+13. RENEWAL
+This tenancy may be renewed for a further term by agreement between the parties.
+
+14. DEPOSIT RETURN
+The deposit will be returned to the Tenants within 10 days of the end of the tenancy, less any deductions for:
+a) Damage to the Property or its contents (fair wear and tear excepted).
+b) Unpaid rent or other charges.
+c) Cleaning required to return the Property to its original condition.
+
+15. UTILITIES
+The Tenants are responsible for all utility bills including:
+a) Gas
+b) Electricity
+c) Water
+d) Broadband internet
+e) Council Tax
+
+The Tenants agree to transfer all utility accounts into their names for the duration of the tenancy.
+
+16. RIGHT TO RENT
+The Landlord confirms that Right to Rent checks have been carried out for all Tenants in accordance with the Immigration Act 2014. Each Tenant confirms they have legal right to rent in the UK and has provided documentation as required by law.
+
+[HMO_CLAUSE]
+
+[ADDITIONAL_TERMS]
+
+SIGNED BY:
+
+Landlord: [LANDLORD_NAME]
+Date: ____________________
+
+Tenant 1: [TENANT_1_NAME]
+Date: ____________________
+
+Tenant 2: [TENANT_2_NAME]
+Date: ____________________
+
+Tenant 3: [TENANT_3_NAME]
+Date: ____________________
+
+Tenant 4: [TENANT_4_NAME]
+Date: ____________________
+
+WITNESSES:
+
+Name: ____________________
+Address: ____________________
+Signature: ____________________
+Date: ____________________
