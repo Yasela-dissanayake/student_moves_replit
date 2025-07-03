@@ -1,0 +1,128 @@
+ALL-INCLUSIVE ASSURED SHORTHOLD TENANCY AGREEMENT
+
+THIS AGREEMENT is made on [DATE]
+
+BETWEEN:
+
+[LANDLORD_NAME] of [LANDLORD_ADDRESS]
+(hereinafter called "the Landlord")
+
+AND
+
+[TENANT_NAME]
+(hereinafter called "the Tenant")
+
+IT IS AGREED AS FOLLOWS:
+
+1. PROPERTY
+The Landlord lets and the Tenant takes the residential property at:
+[PROPERTY_ADDRESS]
+(hereinafter called "the Property")
+
+2. TERM
+The tenancy shall be for a fixed term of [TERM_MONTHS] months,
+commencing on [START_DATE] and ending on [END_DATE].
+
+3. RENT
+The Tenant shall pay rent of £[RENT_AMOUNT] per [RENT_FREQUENCY],
+payable in advance on the [PAYMENT_DAY] of each [PAYMENT_PERIOD].
+
+4. DEPOSIT
+The Tenant shall pay a deposit of £[DEPOSIT_AMOUNT] to be protected in the [DEPOSIT_SCHEME]
+within 30 days of receipt.
+
+5. USE OF PROPERTY
+The Property shall be used solely as a private residence for the occupation of the Tenant.
+
+6. FURNITURE
+[FURNITURE_CLAUSE]
+
+7. TENANT OBLIGATIONS
+The Tenant agrees:
+a) To pay the rent on the due date.
+b) To use the Property as a single private residence.
+c) To keep the Property in a clean and tidy condition.
+d) To allow the Landlord or their agent access to the Property for inspections with 24 hours' notice.
+e) Not to cause a nuisance to neighbors.
+f) Not to make alterations to the Property without written consent.
+g) To report any damages or necessary repairs promptly.
+h) To use utilities reasonably and not excessively.
+
+8. LANDLORD OBLIGATIONS
+The Landlord agrees:
+a) To maintain the structure and exterior of the Property.
+b) To ensure all gas and electrical appliances provided are safe.
+c) To provide a valid Energy Performance Certificate.
+d) To provide a valid Gas Safety Certificate (where applicable).
+e) To ensure smoke and carbon monoxide alarms are in working order.
+f) To ensure the Property is fit for human habitation.
+g) To pay for all utility bills as specified in Section 13.
+
+9. TERMINATION
+This tenancy cannot be terminated before the end of the fixed term except by:
+a) Mutual agreement between the Landlord and Tenant.
+b) Serious breach of the tenancy agreement.
+c) The provisions of the Housing Act 1988.
+
+10. NOTICE
+At the end of the fixed term, to end the tenancy:
+a) The Landlord must give at least two months' notice in writing.
+b) The Tenant must give at least one month's notice in writing.
+
+11. RENEWAL
+This tenancy may be renewed for a further term by agreement between the parties.
+
+12. DEPOSIT RETURN
+The deposit will be returned to the Tenant within 10 days of the end of the tenancy, less any deductions for:
+a) Damage to the Property or its contents (fair wear and tear excepted).
+b) Unpaid rent or other charges.
+c) Cleaning required to return the Property to its original condition.
+
+13. UTILITIES AND SERVICES
+This is an all-inclusive tenancy. The following utilities and services are included in the rent:
+a) Gas
+b) Electricity
+c) Water
+d) Broadband internet
+e) Council Tax
+
+The Landlord will automatically arrange for utilities to be registered in the Landlord's name with preferred providers. The Tenant acknowledges and agrees to the following:
+
+a) The Tenant authorizes the Landlord to use tenant details to set up utility accounts
+b) The Tenant may be required to provide proof of identity or tenancy agreement if requested by utility providers
+c) The Tenant shall cooperate with the automated utility registration process
+d) The Tenant shall notify the Landlord immediately of any utility issues or service interruptions
+
+The Landlord reserves the right to impose reasonable limits on utility usage. Excessive usage may result in additional charges, which will be notified to the Tenant in advance. The Tenant's average monthly usage limits are:
+
+- Electricity: 300 kWh per month
+- Gas: 1200 kWh per month (during heating months)
+- Water: Standard residential usage
+- Broadband: Fair usage policy applies
+
+14. RIGHT TO RENT
+The Landlord confirms that Right to Rent checks have been carried out in accordance with the Immigration Act 2014. The Tenant confirms they have legal right to rent in the UK and has provided documentation as required by law.
+
+[HMO_CLAUSE]
+
+[ADDITIONAL_TERMS]
+
+SIGNED BY:
+
+Landlord: [LANDLORD_NAME]
+Date: ____________________
+
+Tenant: [TENANT_NAME]
+Date: ____________________
+
+WITNESSES:
+
+Name: ____________________
+Address: ____________________
+Signature: ____________________
+Date: ____________________
+
+Name: ____________________
+Address: ____________________
+Signature: ____________________
+Date: ____________________

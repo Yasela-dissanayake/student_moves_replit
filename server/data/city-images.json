@@ -1,0 +1,32 @@
+[
+  {
+    "cityId": "london",
+    "imagePath": "/images/london.jpg",
+    "createdAt": "2025-04-09T07:58:42.000Z",
+    "updatedAt": "2025-04-09T12:17:24.599Z"
+  },
+  {
+    "cityId": "manchester",
+    "imagePath": "/images/manchester.jpg",
+    "createdAt": "2025-04-09T07:58:42.000Z",
+    "updatedAt": "2025-04-09T07:58:42.000Z"
+  },
+  {
+    "cityId": "leeds",
+    "imagePath": "/images/leeds.jpg",
+    "createdAt": "2025-04-09T07:58:42.000Z",
+    "updatedAt": "2025-04-09T12:13:49.484Z"
+  },
+  {
+    "cityId": "birmingham",
+    "imagePath": "/images/birmingham.jpg",
+    "createdAt": "2025-04-09T07:58:42.000Z",
+    "updatedAt": "2025-04-09T07:58:42.000Z"
+  },
+  {
+    "cityId": "liverpool",
+    "imagePath": "/images/liverpool.jpg",
+    "createdAt": "2025-04-09T07:58:42.000Z",
+    "updatedAt": "2025-04-09T07:58:42.000Z"
+  }
+]

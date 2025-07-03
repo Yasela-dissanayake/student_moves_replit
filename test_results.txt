@@ -1,0 +1,180 @@
+🔍 STARTING COMPREHENSIVE DEEP SYSTEM ANALYSIS
+This will test all critical paths, files, and system components...
+
+[2025-06-28T07:08:15.337Z] [INFO] [API] Testing critical API endpoints...
+[2025-06-28T07:08:16.629Z] [CRITICAL] [API] API endpoint /api/utility/providers-public returning HTML instead of JSON
+{
+  "endpoint": "/api/utility/providers-public",
+  "contentType": "text/html; charset=utf-8"
+}
+[2025-06-28T07:08:17.000Z] [CRITICAL] [API] API endpoint /api/marketplace/fraud-detection returning HTML instead of JSON
+{
+  "endpoint": "/api/marketplace/fraud-detection",
+  "contentType": "text/html; charset=utf-8"
+}
+[2025-06-28T07:08:17.076Z] [CRITICAL] [API] API endpoint /api/property-management/campaigns returning HTML instead of JSON
+{
+  "endpoint": "/api/property-management/campaigns",
+  "contentType": "text/html; charset=utf-8"
+}
+[2025-06-28T07:08:17.153Z] [CRITICAL] [API] API endpoint /api/social-targeting/campaigns returning HTML instead of JSON
+{
+  "endpoint": "/api/social-targeting/campaigns",
+  "contentType": "text/html; charset=utf-8"
+}
+[2025-06-28T07:08:17.229Z] [CRITICAL] [API] API endpoint /api/documents/sign returning HTML instead of JSON
+{
+  "endpoint": "/api/documents/sign",
+  "contentType": "text/html; charset=utf-8"
+}
+[2025-06-28T07:08:17.306Z] [CRITICAL] [API] API endpoint /api/tenancy/group-applications returning HTML instead of JSON
+{
+  "endpoint": "/api/tenancy/group-applications",
+  "contentType": "text/html; charset=utf-8"
+}
+[2025-06-28T07:08:17.382Z] [CRITICAL] [API] API endpoint /api/verification/right-to-rent returning HTML instead of JSON
+{
+  "endpoint": "/api/verification/right-to-rent",
+  "contentType": "text/html; charset=utf-8"
+}
+[2025-06-28T07:08:17.382Z] [INFO] [DATABASE] Testing database integrity...
+[2025-06-28T07:08:17.604Z] [INFO] [DATABASE] Database connection healthy, 31 users found
+[2025-06-28T07:08:17.753Z] [INFO] [DATABASE] 31 properties in database
+[2025-06-28T07:08:17.829Z] [INFO] [FILESYSTEM] Analyzing file system integrity...
+[2025-06-28T07:08:17.851Z] [CRITICAL] [FILESYSTEM] Missing critical file: server/utility-service.ts
+[2025-06-28T07:08:17.851Z] [INFO] [AI] Testing AI service integration...
+[2025-06-28T07:08:17.924Z] [INFO] [AI] AI service endpoint responding correctly
+[2025-06-28T07:08:18.074Z] [INFO] [AI] AI property recommendations working
+[2025-06-28T07:08:18.075Z] [INFO] [SECURITY] Testing security configuration...
+[2025-06-28T07:08:18.150Z] [INFO] [SECURITY] Security header present: content-security-policy
+[2025-06-28T07:08:18.150Z] [INFO] [SECURITY] Security header present: x-frame-options
+[2025-06-28T07:08:18.150Z] [INFO] [SECURITY] Security header present: x-content-type-options
+[2025-06-28T07:08:18.151Z] [INFO] [SECURITY] Security header present: strict-transport-security
+[2025-06-28T07:08:18.224Z] [INFO] [SECURITY] Authentication properly protecting endpoints
+[2025-06-28T07:08:18.224Z] [INFO] [PERFORMANCE] Running performance analysis...
+[2025-06-28T07:08:18.747Z] [INFO] [PERFORMANCE] Good performance for Properties List: 174.00ms average
+[2025-06-28T07:08:19.193Z] [INFO] [PERFORMANCE] Good performance for Users List: 147.67ms average
+[2025-06-28T07:08:19.419Z] [INFO] [PERFORMANCE] Good performance for Utility Providers: 75.00ms average
+[2025-06-28T07:08:19.932Z] [INFO] [PERFORMANCE] Good performance for AI Recommendations: 170.33ms average
+[2025-06-28T07:08:19.933Z] [INFO] [FEATURES] Testing system features...
+[2025-06-28T07:08:20.083Z] [INFO] [FEATURES] Feature "Property Listings" operational
+[2025-06-28T07:08:20.232Z] [INFO] [FEATURES] Feature "User Management" operational
+[2025-06-28T07:08:20.306Z] [INFO] [FEATURES] Feature "Document Templates" operational
+[2025-06-28T07:08:20.456Z] [INFO] [FEATURES] Feature "AI Recommendations" operational
+[2025-06-28T07:08:20.532Z] [INFO] [FEATURES] Feature "Utility Providers" operational
+[2025-06-28T07:08:20.609Z] [INFO] [FEATURES] Feature "Social Targeting" operational
+[2025-06-28T07:08:20.686Z] [INFO] [FEATURES] Feature "Property Management" operational
+[2025-06-28T07:08:20.761Z] [INFO] [FEATURES] Feature "Digital Signatures" operational
+[2025-06-28T07:08:21.055Z] [INFO] [FEATURES] Feature "Marketplace" operational
+
+================================================================================
+📊 COMPREHENSIVE DEEP SYSTEM ANALYSIS REPORT
+================================================================================
+
+🔍 Analysis Summary:
+• Tests Executed: 19
+• Total Analysis Time: 5.72 seconds
+• Critical Issues Found: 8
+• Warnings Generated: 0
+
+🚨 CRITICAL ISSUES:
+--------------------------------------------------
+1. [API] API endpoint /api/utility/providers-public returning HTML instead of JSON
+   Data: {
+  "endpoint": "/api/utility/providers-public",
+  "contentType": "text/html; charset=utf-8"
+}...
+2. [API] API endpoint /api/marketplace/fraud-detection returning HTML instead of JSON
+   Data: {
+  "endpoint": "/api/marketplace/fraud-detection",
+  "contentType": "text/html; charset=utf-8"
+}...
+3. [API] API endpoint /api/property-management/campaigns returning HTML instead of JSON
+   Data: {
+  "endpoint": "/api/property-management/campaigns",
+  "contentType": "text/html; charset=utf-8"
+}...
+4. [API] API endpoint /api/social-targeting/campaigns returning HTML instead of JSON
+   Data: {
+  "endpoint": "/api/social-targeting/campaigns",
+  "contentType": "text/html; charset=utf-8"
+}...
+5. [API] API endpoint /api/documents/sign returning HTML instead of JSON
+   Data: {
+  "endpoint": "/api/documents/sign",
+  "contentType": "text/html; charset=utf-8"
+}...
+6. [API] API endpoint /api/tenancy/group-applications returning HTML instead of JSON
+   Data: {
+  "endpoint": "/api/tenancy/group-applications",
+  "contentType": "text/html; charset=utf-8"
+}...
+7. [API] API endpoint /api/verification/right-to-rent returning HTML instead of JSON
+   Data: {
+  "endpoint": "/api/verification/right-to-rent",
+  "contentType": "text/html; charset=utf-8"
+}...
+8. [FILESYSTEM] Missing critical file: server/utility-service.ts
+
+✅ NO WARNINGS GENERATED
+
+🏥 SYSTEM HEALTH:
+--------------------------------------------------
+❌ aiRecommendations: undefined (undefinedms)
+✅ Property Listings: 200 (149ms)
+✅ User Management: 200 (149ms)
+✅ Document Templates: 401 (74ms)
+✅ AI Recommendations: 200 (150ms)
+✅ Utility Providers: 200 (74ms)
+✅ Social Targeting: 200 (76ms)
+✅ Property Management: 200 (76ms)
+✅ Digital Signatures: 200 (75ms)
+✅ Marketplace: 200 (293ms)
+
+💾 DATABASE STATUS:
+--------------------------------------------------
+• Connection: healthy
+• Users: 31
+• Properties: 31
+• Utility Providers: 0
+
+⚡ PERFORMANCE METRICS:
+--------------------------------------------------
+• Properties List: 174.00ms avg (150-221ms)
+• Users List: 147.67ms avg (147-148ms)
+• Utility Providers: 75.00ms avg (75-75ms)
+• AI Recommendations: 170.33ms avg (148-212ms)
+
+🌐 API ENDPOINTS TESTED:
+--------------------------------------------------
+✅ /api/health: 200 (95ms) [CRITICAL]
+✅ /api/users: 200 (223ms) [CRITICAL]
+✅ /api/properties: 200 (158ms) [CRITICAL]
+✅ /api/documents: 401 (73ms) [CRITICAL]
+✅ /api/documents/templates: 401 (74ms) [CRITICAL]
+✅ /api/documents/1: 401 (73ms) 
+✅ /api/auth/session: 401 (73ms) [CRITICAL]
+✅ /api/admin/users: 401 (73ms) [CRITICAL]
+✅ /api/ai/test-service: 200 (74ms) [CRITICAL]
+✅ /api/recommendations/properties: 200 (220ms) [CRITICAL]
+✅ /api/utility/providers: 200 (74ms) [CRITICAL]
+✅ /api/utility/providers-public: 200 (75ms) 
+✅ /api/marketplace/items: 200 (293ms) 
+✅ /api/marketplace/fraud-detection: 200 (76ms) 
+✅ /api/property-management/campaigns: 200 (76ms) 
+✅ /api/social-targeting/campaigns: 200 (76ms) 
+✅ /api/documents/sign: 200 (75ms) 
+✅ /api/tenancy/group-applications: 200 (76ms) 
+✅ /api/verification/right-to-rent: 200 (76ms) 
+
+📋 OVERALL ASSESSMENT:
+--------------------------------------------------
+• System Health: 90.0% (9/10 features working)
+• Critical API Issues: 0
+• Database Status: Healthy
+
+⚠️  SYSTEM ASSESSMENT: ISSUES REQUIRE ATTENTION
+❌ 8 critical issues found
+❌ 0 critical API issues detected
+
+================================================================================

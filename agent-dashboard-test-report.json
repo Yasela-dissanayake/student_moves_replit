@@ -1,0 +1,322 @@
+{
+  "summary": {
+    "total": 33,
+    "passed": 31,
+    "failed": 2,
+    "successRate": 93.9,
+    "categories": {
+      "AUTH": {
+        "passed": 0,
+        "total": 1,
+        "avgTime": 0
+      },
+      "AGENT_API": {
+        "passed": 10,
+        "total": 10,
+        "avgTime": 780
+      },
+      "AGENT_PROPERTY": {
+        "passed": 3,
+        "total": 3,
+        "avgTime": 448
+      },
+      "CLIENT_MGMT": {
+        "passed": 3,
+        "total": 3,
+        "avgTime": 275
+      },
+      "PERFORMANCE": {
+        "passed": 5,
+        "total": 5,
+        "avgTime": 420
+      },
+      "MARKETING": {
+        "passed": 2,
+        "total": 3,
+        "avgTime": 227
+      },
+      "CALENDAR": {
+        "passed": 2,
+        "total": 2,
+        "avgTime": 155
+      },
+      "DOCUMENTS": {
+        "passed": 3,
+        "total": 3,
+        "avgTime": 230
+      },
+      "AI_TOOLS": {
+        "passed": 3,
+        "total": 3,
+        "avgTime": 378
+      }
+    }
+  },
+  "details": [
+    {
+      "category": "AUTH",
+      "test": "Agent Authentication",
+      "status": "FAIL",
+      "details": "No valid agent credentials found",
+      "responseTime": null,
+      "timestamp": "2025-06-29T21:08:57.383Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Agent Properties Management",
+      "status": "PASS",
+      "details": "Authentication required (expected)",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T21:08:57.459Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Application Management",
+      "status": "PASS",
+      "details": "Authentication required (expected)",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T21:08:57.535Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Tenancy Management",
+      "status": "PASS",
+      "details": "Authentication required (expected)",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T21:08:57.611Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Client Management",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T21:08:57.691Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Dashboard Statistics",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:57.770Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Commission Tracking",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:57.849Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Lead Management",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 80,
+      "timestamp": "2025-06-29T21:08:57.929Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Performance Analytics",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:58.007Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Calendar & Scheduling",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:58.085Z"
+    },
+    {
+      "category": "AGENT_API",
+      "test": "Agent Notifications",
+      "status": "PASS",
+      "details": "Data retrieved: N/A items",
+      "responseTime": 81,
+      "timestamp": "2025-06-29T21:08:58.166Z"
+    },
+    {
+      "category": "AGENT_PROPERTY",
+      "test": "Property Portfolio View",
+      "status": "PASS",
+      "details": "31 properties accessible",
+      "responseTime": 221,
+      "timestamp": "2025-06-29T21:08:58.388Z"
+    },
+    {
+      "category": "AGENT_PROPERTY",
+      "test": "Agent Property Filtering",
+      "status": "PASS",
+      "details": "Agent-specific filtering functional",
+      "responseTime": 150,
+      "timestamp": "2025-06-29T21:08:58.538Z"
+    },
+    {
+      "category": "AGENT_PROPERTY",
+      "test": "Property Valuation Tool",
+      "status": "PASS",
+      "details": "Valuation endpoint functional",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T21:08:58.615Z"
+    },
+    {
+      "category": "CLIENT_MGMT",
+      "test": "Client Database Access",
+      "status": "PASS",
+      "details": "Client management system accessible",
+      "responseTime": 106,
+      "timestamp": "2025-06-29T21:08:58.722Z"
+    },
+    {
+      "category": "CLIENT_MGMT",
+      "test": "Lead Creation System",
+      "status": "PASS",
+      "details": "Lead management functional",
+      "responseTime": 85,
+      "timestamp": "2025-06-29T21:08:58.807Z"
+    },
+    {
+      "category": "CLIENT_MGMT",
+      "test": "Communication Tracking",
+      "status": "PASS",
+      "details": "Communication history accessible",
+      "responseTime": 84,
+      "timestamp": "2025-06-29T21:08:58.892Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Commission Tracking",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:58.971Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Performance Statistics",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:59.049Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Deal Pipeline",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T21:08:59.129Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Earnings Dashboard",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T21:08:59.207Z"
+    },
+    {
+      "category": "PERFORMANCE",
+      "test": "Target Management",
+      "status": "PASS",
+      "details": "Endpoint accessible (Status: 200)",
+      "responseTime": 108,
+      "timestamp": "2025-06-29T21:08:59.315Z"
+    },
+    {
+      "category": "MARKETING",
+      "test": "Social Media Campaigns",
+      "status": "PASS",
+      "details": "Campaign management accessible",
+      "responseTime": 75,
+      "timestamp": "2025-06-29T21:08:59.390Z"
+    },
+    {
+      "category": "MARKETING",
+      "test": "Property Management Campaigns",
+      "status": "PASS",
+      "details": "B2B campaign tools accessible",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T21:08:59.466Z"
+    },
+    {
+      "category": "MARKETING",
+      "test": "Campaign Creation",
+      "status": "FAIL",
+      "details": "Status: 400",
+      "responseTime": 76,
+      "timestamp": "2025-06-29T21:08:59.542Z"
+    },
+    {
+      "category": "CALENDAR",
+      "test": "Calendar Access",
+      "status": "PASS",
+      "details": "Calendar system accessible",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:59.621Z"
+    },
+    {
+      "category": "CALENDAR",
+      "test": "Appointment Booking",
+      "status": "PASS",
+      "details": "Booking system functional",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T21:08:59.698Z"
+    },
+    {
+      "category": "DOCUMENTS",
+      "test": "Document Templates",
+      "status": "PASS",
+      "details": "Template system accessible",
+      "responseTime": 75,
+      "timestamp": "2025-06-29T21:08:59.773Z"
+    },
+    {
+      "category": "DOCUMENTS",
+      "test": "Digital Signing System",
+      "status": "PASS",
+      "details": "Digital signing accessible",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T21:08:59.850Z"
+    },
+    {
+      "category": "DOCUMENTS",
+      "test": "Contract Generation",
+      "status": "PASS",
+      "details": "Contract generation functional",
+      "responseTime": 78,
+      "timestamp": "2025-06-29T21:08:59.928Z"
+    },
+    {
+      "category": "AI_TOOLS",
+      "test": "AI Property Recommendations",
+      "status": "PASS",
+      "details": "4 recommendations generated",
+      "responseTime": 222,
+      "timestamp": "2025-06-29T21:09:00.150Z"
+    },
+    {
+      "category": "AI_TOOLS",
+      "test": "AI Tenant Screening",
+      "status": "PASS",
+      "details": "Screening system accessible",
+      "responseTime": 77,
+      "timestamp": "2025-06-29T21:09:00.227Z"
+    },
+    {
+      "category": "AI_TOOLS",
+      "test": "Automated Workflows",
+      "status": "PASS",
+      "details": "Workflow automation accessible",
+      "responseTime": 79,
+      "timestamp": "2025-06-29T21:09:00.306Z"
+    }
+  ],
+  "timestamp": "2025-06-29T21:09:00.309Z"
+}

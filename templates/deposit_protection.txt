@@ -1,0 +1,59 @@
+DEPOSIT PROTECTION CERTIFICATE
+
+Certificate Number: [CERTIFICATE_NUMBER]
+Date of Issue: [DATE]
+
+PROPERTY:
+[PROPERTY_ADDRESS]
+
+TENANT DETAILS:
+[TENANT_NAME]
+[TENANT_CONTACT]
+
+LANDLORD/AGENT DETAILS:
+[LANDLORD_NAME]
+[LANDLORD_ADDRESS]
+[LANDLORD_CONTACT]
+
+DEPOSIT DETAILS:
+Amount Received: £[DEPOSIT_AMOUNT]
+Date Received: [DEPOSIT_RECEIPT_DATE]
+Tenancy Start Date: [START_DATE]
+Tenancy End Date: [END_DATE]
+
+PROTECTION SCHEME:
+This deposit has been protected with:
+[DEPOSIT_SCHEME]
+Scheme Reference: [SCHEME_REFERENCE]
+Protection Date: [PROTECTION_DATE]
+
+STATUTORY INFORMATION:
+1. The deposit is being held in accordance with the terms and conditions of the [DEPOSIT_SCHEME].
+2. The deposit has been protected within 30 days of receipt as required by law.
+3. Information about the tenancy deposit protection requirements can be found in the Housing Act 2004.
+4. If the tenant and landlord agree on the deposit's return, it will be paid back according to their agreement.
+5. If there is a dispute over the deposit, the [DEPOSIT_SCHEME] provides a free dispute resolution service.
+
+PRESCRIBED INFORMATION CONFIRMATION:
+☐ The prescribed information has been provided to the tenant(s)
+☐ The deposit protection scheme's terms and conditions have been made available to the tenant(s)
+☐ The tenant(s) has been informed how the deposit is protected
+
+DEPOSIT RETURN CONDITIONS:
+The deposit will be repaid following agreement between landlord and tenant at the end of the tenancy, less any deductions for:
+- Damage to the property (beyond fair wear and tear)
+- Unpaid rent or bills
+- Missing items from the inventory
+- Cleaning costs (if property not returned in a clean condition)
+
+TENANT ACKNOWLEDGMENT:
+I/We confirm receipt of this certificate and understand how my/our deposit is protected.
+
+Tenant Signature: ____________________
+Date: ____________________
+
+LANDLORD/AGENT DECLARATION:
+I confirm that the deposit has been protected in accordance with legal requirements.
+
+Landlord/Agent Signature: ____________________
+Date: ____________________
