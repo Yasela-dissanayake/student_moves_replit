@@ -1,6 +1,6 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+// import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Copy } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,12 @@ interface CodeBlockProps {
   className?: string;
 }
 
-export function CodeBlock({ code, language, fileName, className }: CodeBlockProps) {
+export function CodeBlock({
+  code,
+  language,
+  fileName,
+  className,
+}: CodeBlockProps) {
   const handleCopyCode = () => {
     navigator.clipboard.writeText(code);
     toast({
@@ -35,7 +40,7 @@ export function CodeBlock({ code, language, fileName, className }: CodeBlockProp
       <div className="relative">
         <SyntaxHighlighter
           language={language}
-          style={oneDark}
+          // style={oneDark}
           customStyle={{
             margin: 0,
             borderRadius: fileName ? "0" : "0.375rem",

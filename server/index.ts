@@ -14,7 +14,6 @@ import setupSecureHeaders from "./middleware/secure-headers";
 import { userStatusService } from "./user-status-service";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
-
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -36,15 +35,15 @@ if (!fs.existsSync(marketplaceUploadsDir)) {
   fs.mkdirSync(marketplaceUploadsDir, { recursive: true });
 }
 
-// Serve static files from the uploads directory
+// Serve static files
 app.use("/uploads", express.static(uploadsDir));
 console.log("Static file serving set up for uploads directory:", uploadsDir);
 
-// Serve static files from the public directory
 const publicDir = join(process.cwd(), "public");
 app.use(express.static(publicDir));
 console.log("Static file serving set up for public directory:", publicDir);
 
+// API request logger
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -63,11 +62,9 @@ app.use((req, res, next) => {
       if (capturedJsonResponse) {
         logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
       }
-
       if (logLine.length > 80) {
         logLine = logLine.slice(0, 79) + "…";
       }
-
       log(logLine);
     }
   });
@@ -75,7 +72,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Session middleware setup function
+// Session middleware setup
 async function setupSessionMiddleware(app: express.Application) {
   let sessionStore;
 
@@ -84,7 +81,7 @@ async function setupSessionMiddleware(app: express.Application) {
     sessionStore = new PgStore({
       conString: process.env.DATABASE_URL,
       tableName: "sessions",
-      createTableIfMissing: true,
+      createTableIfMissing: false,
       disableTouch: false,
       pruneSessionInterval: 60,
       errorLog: (error: Error) => {
@@ -106,7 +103,6 @@ async function setupSessionMiddleware(app: express.Application) {
       "⚠️ Failed to initialize PostgreSQL session store, using default memory store:",
       error
     );
-    // Use default session store (MemoryStore)
     sessionStore = undefined;
     console.log("Using default memory session store as fallback");
   }
@@ -123,13 +119,12 @@ async function setupSessionMiddleware(app: express.Application) {
         secure: false,
         httpOnly: true,
         sameSite: "lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         path: "/",
       },
     })
   );
 
-  // Add session debugging middleware
   app.use((req, res, next) => {
     console.log("🔍 Session Debug:", {
       sessionID: req.sessionID,
@@ -143,57 +138,41 @@ async function setupSessionMiddleware(app: express.Application) {
 }
 
 (async () => {
-  // Set up session middleware FIRST - critical for authentication
+  // Middleware and route setup
   await setupSessionMiddleware(app);
-
-  // Set up secure cookies middleware - should be one of the first middlewares
   setupSecureCookies(app);
-
-  // Set up secure headers middleware
   setupSecureHeaders(app);
-
-  // Set up CSRF protection routes - must be done before registering other routes
   setupCsrfRoutes(app);
-
-  // Set up Content Security Policy
   setupContentSecurityPolicy(app);
 
-  // Register all application routes
+  // Register application routes
   const server = await registerRoutes(app);
 
-  // Initialize real-time user status service
+  // Initialize user status service (WebSocket, etc.)
   userStatusService.initialize(server);
 
-  // Set up CSRF error handler - must be after route registration
+  // Global CSRF error handler
   app.use(handleCsrfError);
 
-  // Global error handler
+  // Global API error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-
-    // Log the error but don't throw it again
     console.error("API Error:", err);
-
-    // Only send a response if one hasn't been sent already
     if (!res.headersSent) {
       res.status(status).json({ message });
     }
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
+  // Set up Vite or static serving
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
+  // Final server listen
+  const port = parseInt(process.env.PORT || "5000", 10);
   server.listen(
     {
       port,
@@ -201,13 +180,7 @@ async function setupSessionMiddleware(app: express.Application) {
       reusePort: true,
     },
     () => {
-      log(`serving on port ${port}`);
+      log(`✅ Server is running on http://localhost:${port}`);
     }
   );
 })();
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});

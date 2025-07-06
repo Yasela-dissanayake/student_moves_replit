@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { formatDistance } from "date-fns";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+// import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
@@ -90,7 +90,7 @@ export function ChatMessage({
                       return (
                         <div className="relative group">
                           <SyntaxHighlighter
-                            style={oneDark}
+                            // style={oneDark}
                             language={language}
                             PreTag="div"
                             {...props}

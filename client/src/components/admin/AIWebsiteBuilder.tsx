@@ -3,13 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Check, AlertCircle, Code, PanelRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface FeatureImplementation {
   generatedCode: string;
@@ -28,19 +34,22 @@ interface AIWebsiteBuilderProps {
 
 /**
  * AIWebsiteBuilder Component
- * 
+ *
  * This component provides an interface for generating website features using AI.
  * It allows users to specify details about the feature they want to create and uses
  * the OpenAI API to generate the implementation code and steps.
  */
-export function AIWebsiteBuilder({ onFeatureGenerated }: AIWebsiteBuilderProps) {
+export function AIWebsiteBuilder({
+  onFeatureGenerated,
+}: AIWebsiteBuilderProps) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [featureName, setFeatureName] = useState("");
   const [featureDescription, setFeatureDescription] = useState("");
   const [targetComponent, setTargetComponent] = useState("");
   const [featureType, setFeatureType] = useState("full-stack");
-  const [generatedFeature, setGeneratedFeature] = useState<GeneratedFeature | null>(null);
+  const [generatedFeature, setGeneratedFeature] =
+    useState<GeneratedFeature | null>(null);
   const [currentTab, setCurrentTab] = useState("code");
 
   const handleGenerateFeature = async () => {
@@ -59,9 +68,13 @@ export function AIWebsiteBuilder({ onFeatureGenerated }: AIWebsiteBuilderProps) 
       // Prepare feature description with additional context
       const fullDescription = `
 Feature Name: ${featureName}
-Feature Type: ${featureType === "full-stack" ? "Full Stack (UI + API)" : 
-               featureType === "frontend" ? "Frontend UI Only" : 
-               "Backend API Only"}
+Feature Type: ${
+        featureType === "full-stack"
+          ? "Full Stack (UI + API)"
+          : featureType === "frontend"
+          ? "Frontend UI Only"
+          : "Backend API Only"
+      }
 ${targetComponent ? `Target Component: ${targetComponent}` : ""}
 
 Description:
@@ -86,7 +99,7 @@ ${featureDescription}
       }
 
       const data = await response.json();
-      
+
       // Set the generated feature
       setGeneratedFeature({
         name: featureName,
@@ -104,15 +117,18 @@ ${featureDescription}
 
       toast({
         title: "Feature generated successfully",
-        description: "Your AI-powered feature implementation is ready for review.",
+        description:
+          "Your AI-powered feature implementation is ready for review.",
         variant: "default",
       });
     } catch (error: any) {
       console.error("Error generating feature:", error);
-      
+
       toast({
         title: "Generation failed",
-        description: error.message || "There was an error generating your feature. Please try again.",
+        description:
+          error.message ||
+          "There was an error generating your feature. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -144,7 +160,9 @@ ${featureDescription}
             />
           </div>
           <div>
-            <Label htmlFor="target-component">Target Component (Optional)</Label>
+            <Label htmlFor="target-component">
+              Target Component (Optional)
+            </Label>
             <Input
               id="target-component"
               placeholder="e.g., PropertyCard"
@@ -189,7 +207,10 @@ ${featureDescription}
           <Button
             variant="outline"
             onClick={handleReset}
-            disabled={loading || (!featureName && !featureDescription && !targetComponent)}
+            disabled={
+              loading ||
+              (!featureName && !featureDescription && !targetComponent)
+            }
           >
             Reset
           </Button>
@@ -245,11 +266,11 @@ ${featureDescription}
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-md overflow-hidden">
                   <SyntaxHighlighter
                     language="typescript"
-                    style={vscDarkPlus}
+                    // style={vscDarkPlus}
                     customStyle={{
                       margin: 0,
-                      borderRadius: '0.375rem',
-                      fontSize: '0.875rem',
+                      borderRadius: "0.375rem",
+                      fontSize: "0.875rem",
                       lineHeight: 1.6,
                     }}
                     showLineNumbers
@@ -262,21 +283,24 @@ ${featureDescription}
               {/* Steps Tab */}
               <TabsContent value="steps" className="mt-4">
                 <div className="space-y-6">
-                  {generatedFeature.implementation.implementationSteps.map((step, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-medium">
-                        {index + 1}
+                  {generatedFeature.implementation.implementationSteps.map(
+                    (step, index) => (
+                      <div key={index} className="flex gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-medium">
+                          {index + 1}
+                        </div>
+                        <div className="flex-1 pt-0.5">
+                          <p className="text-sm">{step}</p>
+                        </div>
                       </div>
-                      <div className="flex-1 pt-0.5">
-                        <p className="text-sm">{step}</p>
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  )}
 
                   <div className="flex gap-4 items-center mt-4 py-4 border-t">
                     <AlertCircle className="h-5 w-5 text-amber-500" />
                     <p className="text-sm text-muted-foreground">
-                      Review the implementation steps carefully before proceeding. Some steps may require manual intervention.
+                      Review the implementation steps carefully before
+                      proceeding. Some steps may require manual intervention.
                     </p>
                   </div>
                 </div>

@@ -1,19 +1,21 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
-import * as schema from '../shared/schema';
-import { log } from './vite';
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import * as schema from "../shared/schema";
+import { log } from "./vite";
+import dotenv from "dotenv";
+dotenv.config();
 
 // Initialize database connection with connection pooling
 export function initDB() {
   try {
     const connectionString = process.env.DATABASE_URL;
-    
+
     if (!connectionString) {
-      throw new Error('DATABASE_URL environment variable is not set');
+      throw new Error("DATABASE_URL environment variable is not set");
     }
-    
-    log(`Connecting to database...`, 'postgres');
-    
+
+    log(`Connecting to database...`, "postgres");
+
     // Optimized connection pooling configuration for 100/100 performance
     const poolOptions = {
       max: 20, // Increased maximum connections for better concurrency
@@ -24,19 +26,19 @@ export function initDB() {
       transform: postgres.camel, // Automatic camelCase transformation
       prepare: false, // Disable prepared statements for faster simple queries
     };
-    
+
     // Create PostgreSQL client with connection pooling
     const client = postgres(connectionString, poolOptions);
-    
+
     // Create Drizzle ORM instance
     const db = drizzle(client, { schema });
-    
-    log(`Database connection established`, 'postgres');
-    
+
+    log(`Database connection established`, "postgres");
+
     return { db, client };
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    log(`Database connection error: ${errorMessage}`, 'postgres');
+    log(`Database connection error: ${errorMessage}`, "postgres");
     throw error;
   }
 }
@@ -52,7 +54,7 @@ export async function transaction<T>(
     const transactionDb = drizzle(tx, { schema });
     return callback(transactionDb);
   });
-  
+
   return result;
 }
 
@@ -61,14 +63,22 @@ export const pool = {
   query: async (text: string, params?: any[]) => {
     try {
       // Make sure params is an array and all values are properly handled
-      const processedParams = params && Array.isArray(params) 
-        ? params.map(p => typeof p === 'object' && !(p instanceof Date) && !(p instanceof Buffer) ? JSON.stringify(p) : p)
-        : params;
-      
+      const processedParams =
+        params && Array.isArray(params)
+          ? params.map((p) =>
+              typeof p === "object" &&
+              !(p instanceof Date) &&
+              !(p instanceof Buffer)
+                ? JSON.stringify(p)
+                : p
+            )
+          : params;
+
       return await client.unsafe(text, processedParams);
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      log(`Database query error: ${errorMessage}`, 'postgres');
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      log(`Database query error: ${errorMessage}`, "postgres");
       throw error;
     }
   },
@@ -93,7 +103,7 @@ export async function ensureSessionTable() {
       );
       CREATE INDEX IF NOT EXISTS "IDX_session_expire" ON "session" ("expire");
     `;
-    
+
     await client.unsafe(createSessionTableSQL);
     log("Session table created or verified", "postgres");
     return true;
@@ -107,7 +117,7 @@ export async function ensureSessionTable() {
 // Database singleton to be used throughout the app
 const { db, client } = initDB();
 // Ensure session table exists
-ensureSessionTable().catch(err => {
+ensureSessionTable().catch((err) => {
   const errorMessage = err instanceof Error ? err.message : String(err);
   log(`Session table error: ${errorMessage}`, "postgres");
 });
